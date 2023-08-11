@@ -3,7 +3,7 @@
 <suite name="Prueba">
 
 
-    <test thread-count="5" name="Test">
+    <test thread-count="4" name="Test" parallel="true">
         <classes>
             <class name="tests.TestVision"/>
         </classes>
