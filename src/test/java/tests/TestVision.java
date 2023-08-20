@@ -3,11 +3,10 @@ package tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
@@ -25,24 +24,40 @@ public class TestVision
     //        chromeOptions.setCapability("se:recordVideo", true);
 //        chromeOptions.setCapability("se:screenResolution", "1920x1080");
     EdgeOptions edgeOptions = new EdgeOptions();
+
+    FirefoxOptions firefoxOptions = new FirefoxOptions();
+
     @Test
     void test1() throws InterruptedException, IOException {
-        chromeOptions.addArguments("--headless=new");
 
         String browser = Config.browser;
 
-        if(browser.contains("chrome"))
-
-            driver = new RemoteWebDriver(new URL("http://192.168.215.2:4444"),chromeOptions);
-
+        if(browser.contains("chrome")) {
+            chromeOptions.addArguments("--headless=new");
+            driver = new RemoteWebDriver(new URL(Config.hub), chromeOptions);
+            Set<String> opsC = chromeOptions.getCapabilityNames();
+            for (String p : opsC) {
+                System.out.println(p);
+            }
+        }
             //driver = new ChromeDriver();
-        else if (browser.contains("edge"))
+        else if (browser.contains("edge")) {
+             edgeOptions.setCapability("browserName","MicrosoftEdge");
+            driver = new RemoteWebDriver(new URL(Config.hub), edgeOptions);
+            Set<String> opsE = edgeOptions.getCapabilityNames();
+            for (String p : opsE) {
+                System.out.println(p);
+            }
+        } //driver = new EdgeDriver();
+        else {
+            firefoxOptions.setCapability("browserName","firefox");
 
-            driver = new RemoteWebDriver(new URL("http://192.168.215.2:4444"), edgeOptions);
-            //driver = new EdgeDriver();
-        else
-            driver = new FirefoxDriver();
-
+            driver = new RemoteWebDriver(new URL(Config.hub), firefoxOptions);
+            Set<String> opsF = firefoxOptions.getCapabilityNames();
+            for (String p : opsF) {
+                System.out.println(p);
+            }
+        }
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
