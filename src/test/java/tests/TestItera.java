@@ -5,9 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
@@ -20,10 +19,12 @@ import java.util.List;
 public class TestItera {
     
     @Test
+    //la pagina itera ya no esta funcionando
     void test() throws InterruptedException, MalformedURLException {
         //WebDriver driver = new ChromeDriver();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        WebDriver driver = new RemoteWebDriver(new URL("http://192.168.215.2:4444"),chromeOptions);
+        DesiredCapabilities dc = new DesiredCapabilities();
+        dc.setBrowserName("MicrosoftEdge");
+        WebDriver driver = new RemoteWebDriver(new URL("http://18.116.241.151"),dc);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

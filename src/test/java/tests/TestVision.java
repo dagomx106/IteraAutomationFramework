@@ -106,13 +106,13 @@ public class TestVision
         System.out.println(driver.findElement(By.xpath("//div[@class='cBGGJ OIC90c']")).getText());
 
         driver.findElement(By.xpath("//span[@class='aDTYNe snByac OvPDhc OIC90c']")).click();
-        Shot.take(driver);
+        //Shot.take(driver);
         Thread.sleep(2000);
 
         WebElement plan_check = driver.findElement(By.xpath("//span[@class='aDTYNe snByac n5vBHf OIC90c']"));
         actions.scrollToElement(plan_check);
         plan_check.click();
-        Shot.take(driver);
+        //Shot.take(driver);
         Thread.sleep(2000);
 
 
@@ -121,11 +121,11 @@ public class TestVision
 
         driver.findElement(By.xpath("//span[@class='vRMGwf oJeWuf']")).click();
         //driver.findElement(By.xpath("//span[@class='vRMGwf oJeWuf']")).sendKeys(Keys.ENTER);
-        Shot.take(driver);
+        //Shot.take(driver);
         Thread.sleep(2000);
 
         driver.findElement(By.xpath("//span[@class='NPEfkd RveJvd snByac']")).click();
-        Shot.take(driver);
+        //Shot.take(driver);
 
         driver.switchTo().defaultContent();
 
@@ -152,12 +152,12 @@ public class TestVision
 
         if(browser.contains("chrome"))
 
-            driver = new RemoteWebDriver(new URL("http://192.168.215.2:4444"),chromeOptions);
+            driver = new RemoteWebDriver(new URL(Config.hub),chromeOptions);
 
             //driver = new ChromeDriver();
         else if (browser.contains("edge"))
 
-            driver = new RemoteWebDriver(new URL("http://192.168.215.2:4444"), edgeOptions);
+            driver = new RemoteWebDriver(new URL(Config.hub), edgeOptions);
             //driver = new EdgeDriver();
         else
             driver = new FirefoxDriver();
@@ -256,12 +256,12 @@ public class TestVision
 
         if(browser.contains("chrome"))
 
-            driver = new RemoteWebDriver(new URL("http://192.168.215.2:4444"),chromeOptions);
+            driver = new RemoteWebDriver(new URL(Config.hub),chromeOptions);
 
             //driver = new ChromeDriver();
         else if (browser.contains("edge"))
 
-            driver = new RemoteWebDriver(new URL("http://192.168.215.2:4444"), edgeOptions);
+            driver = new RemoteWebDriver(new URL(Config.hub), edgeOptions);
             //driver = new EdgeDriver();
         else
             driver = new FirefoxDriver();
